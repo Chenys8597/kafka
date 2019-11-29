@@ -29,7 +29,6 @@ public class ConsumerWorker<K, V> implements Runnable{
         for (TopicPartition partition : records.partitions()) {
             List<ConsumerRecord<K, V>> pRecords = records.records(partition);
             for (ConsumerRecord<K, V> record: pRecords) {
-                System.out.println(String.format("topic=%s, partition=%d, offsets=%d", record.topic(), record.partition(), record.offset()));
             }
             long lastOffset = pRecords.get(pRecords.size() - 1).offset();
             synchronized (offsets) {
